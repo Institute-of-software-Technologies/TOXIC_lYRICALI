@@ -11,16 +11,40 @@
 <body>
 
     <!-- This is the home page hero banner -->
-    <section class="hero">
-        <!-- Background image -->
-        <div class="hero-bg">
-            <img src="MEDIA/toxic_lyrikali.jpg" alt="Hero Background">
+    <section
+        class="relative flex flex-col items-center justify-center min-h-[60vh] px-6 py-20 text-center overflow-hidden bg-gray-900">
+
+        <div class="absolute inset-0 z-0">
+            <img src="MEDIA/toxic_lyrikali.jpg" alt="Hero Background" class="w-full h-full object-cover opacity-50" />
         </div>
-        <h1>Welcome to Toxic Lyrikali's Website</h1>
-        <p>We feed you with the artist's backstory, lyrics and music news.</p>
-        <a href="#services" class="btn">Explore Services</a>
+
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+                Welcome to Toxic Lyrikali's Website
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                We feed you with the artist's backstory, lyrics and music news.
+            </p>
+
+            <a href="#services"
+                class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg">
+                Explore Services
+            </a>
+        </div>
+
     </section>
 
+    <!-- Biography/About Section -->
+
+    <!-- Gallery Section -->
+
+    <!-- Discography Section -->
+
+    <!-- Events Section -->
+
+    <!-- Social Media Links Widget -->
+     
     <!-- Contact us -->
     <div class="isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
         <div aria-hidden="true"
@@ -112,6 +136,8 @@
             </div>
         </form>
     </div>
+
+    <!-- Footer -->
 </body>
 
 </html>
