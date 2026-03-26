@@ -1,56 +1,735 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery - Toxic Lyrikali</title>
+    <title>Discography | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Banner */
+        .discography-hero {
+            min-height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d0d00 0%, var(--bg-dark) 50%, #1a0000 100%);
+            padding: 4rem 0;
+        }
+
+        .discography-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(212,160,23,0.03) 20px,
+                rgba(212,160,23,0.03) 21px
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
+
+        /* Featured Album - Jumbotron Style */
+        .featured-album {
+            background: linear-gradient(135deg, var(--bg-grey) 0%, var(--bg-mid) 100%);
+            border: 2px solid var(--gold);
+            padding: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-album::before {
+            content: 'FEATURED';
+            position: absolute;
+            top: 1rem;
+            right: -3rem;
+            background: var(--gold);
+            color: var(--bg-dark);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            padding: 0.3rem 4rem;
+            transform: rotate(45deg);
+        }
+
+        .featured-album h3 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .featured-album p {
+            color: rgba(240,236,228,0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .featured-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-top: 1.5rem;
+        }
+
+        /* Song Cards */
+        .song-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .song-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(212,160,23,0.1);
+        }
+
+        .song-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .song-card .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .song-card .album-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .song-card .year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(240,236,228,0.5);
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .play-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Album Grid */
+        .album-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .album-card:hover {
+            border-color: var(--gold);
+        }
+
+        .album-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .album-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .album-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .album-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .album-card .year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--bg-grey);
+            padding: 4rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: rgba(240,236,228,0.6);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Buttons */
+        .btn-gold {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .discography-hero {
+                min-height: 35vh;
+                padding: 3rem 0;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .featured-album {
+                padding: 2rem;
+            }
+
+            .featured-album h3 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .featured-album {
+                padding: 1.5rem;
+            }
+
+            .featured-album h3 {
+                font-size: 1.6rem;
+            }
+
+            .song-card .card-title {
+                font-size: 1.3rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Discover Songs</h1>
-    <p>Explore the latest songs, artists, and albums from Toxic Lyrikali.</p>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <section id="song-list">
-        <h2>Song List</h2>
-        <ul>
-            <li>
-                <strong>Song:</strong> Toxic Flow<br>
-                <strong>Artist:</strong> Toxic Lyrikali<br>
-                <strong>Album:</strong> Venomous Verses
-            </li>
-            <li>
-                <strong>Song:</strong> Midnight Echoes<br>
-                <strong>Artist:</strong> Toxic Lyrikali<br>
-                <strong>Album:</strong> Shadow Symphony
-            </li>
-            <li>
-                <strong>Song:</strong> Rebel Heart<br>
-                <strong>Artist:</strong> Toxic Lyrikali<br>
-                <strong>Album:</strong> Underground Uprising
-            </li>
-            <li>
-                <strong>Song:</strong> Neon Nights<br>
-                <strong>Artist:</strong> Toxic Lyrikali<br>
-                <strong>Album:</strong> Electric Dreams
-            </li>
-            <li>
-                <strong>Song:</strong> Silent Screams<br>
-                <strong>Artist:</strong> Toxic Lyrikali<br>
-                <strong>Album:</strong> Hidden Horrors
-            </li>
-        </ul>
-    </section>
-
-    <section id="featured-album">
-        <h2>Featured Album</h2>
-        <div>
-            <h3>Venomous Verses</h3>
-            <p>Artist: Toxic Lyrikali</p>
-            <p>Release Year: 2023</p>
-            <p>A collection of intense lyrical masterpieces.</p>
+    <!-- Hero Banner -->
+    <section class="discography-hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">// The Collection</p>
+            <h1 class="hero-title">Disc<span>ography</span></h1>
         </div>
     </section>
-</body>
 
+    <!-- Featured Album Section -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">Featured Release</p>
+            <div class="featured-album">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3>Venomous Verses</h3>
+                        <p>The definitive collection showcasing Toxic Lyrikali's evolution as an artist. From hard-hitting trap anthems to introspective spoken word pieces, this album captures the essence of Nairobi's underground scene while pushing boundaries into new sonic territories. Each track is a chapter in the story of struggle, triumph, and unwavering authenticity.</p>
+                        <div class="featured-meta">
+                            <span><i class="bi bi-calendar"></i> Released: 2023</span>
+                            <span class="ms-4"><i class="bi bi-music-note-beamed"></i> 12 Tracks</span>
+                            <span class="ms-4"><i class="bi bi-clock"></i> 48 Minutes</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                        <button class="btn btn-gold">
+                            <i class="bi bi-play-fill"></i> Listen Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Songs Section -->
+    <section class="section-padding" style="background-color: var(--bg-grey);">
+        <div class="container">
+            <p class="section-label">All Tracks</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Song Collection</h2>
+            
+            <div class="row g-4">
+                <!-- Song 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Toxic Flow</h5>
+                            <p class="album-name">Venomous Verses</p>
+                            <p class="year">2023</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Midnight Echoes</h5>
+                            <p class="album-name">Shadow Symphony</p>
+                            <p class="year">2022</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Rebel Heart</h5>
+                            <p class="album-name">Underground Uprising</p>
+                            <p class="year">2021</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Neon Nights</h5>
+                            <p class="album-name">Electric Dreams</p>
+                            <p class="year">2022</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Silent Screams</h5>
+                            <p class="album-name">Hidden Horrors</p>
+                            <p class="year">2021</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Street Poetry</h5>
+                            <p class="album-name">Venomous Verses</p>
+                            <p class="year">2023</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 7 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Urban Legends</h5>
+                            <p class="album-name">Shadow Symphony</p>
+                            <p class="year">2022</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 8 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hustle Anthem</h5>
+                            <p class="album-name">Underground Uprising</p>
+                            <p class="year">2021</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song 9 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Dream Chaser</h5>
+                            <p class="album-name">Electric Dreams</p>
+                            <p class="year">2022</p>
+                            <button class="play-btn">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Albums Section -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">Collections</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Albums</h2>
+            
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card album-card">
+                        <img src="MEDIA/album1.jpg" alt="Venomous Verses">
+                        <div class="card-body">
+                            <h4>Venomous Verses</h4>
+                            <p class="year">2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card album-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 072635.png" alt="Shadow Symphony">
+                        <div class="card-body">
+                            <h4>Shadow Symphony</h4>
+                            <p class="year">2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card album-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 072404.png" alt="Electric Dreams">
+                        <div class="card-body">
+                            <h4>Electric Dreams</h4>
+                            <p class="year">2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card album-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 131116.png" alt="Underground Uprising">
+                        <div class="card-body">
+                            <h4>Underground Uprising</h4>
+                            <p class="year">2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">9+</div>
+                        <div class="stat-label">Released Tracks</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Albums</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Years Active</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Bars Dropped</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

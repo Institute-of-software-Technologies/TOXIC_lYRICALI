@@ -4,131 +4,691 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Banner */
+        .about-hero {
+            min-height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0000 0%, var(--bg-dark) 50%, #0d0d00 100%);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                -55deg,
+                transparent,
+                transparent 12px,
+                rgba(224,31,31,0.04) 12px,
+                rgba(224,31,31,0.04) 13px
+            );
+        }
+
+        .hero-tag {
+            position: absolute;
+            top: 30%;
+            right: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            color: rgba(224,31,31,0.06);
+            letter-spacing: 8px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+        }
+
+        .hero-title span {
+            color: var(--red);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
+
+        /* Artist Card */
+        .artist-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .artist-img-wrap {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .artist-img-wrap::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
+            border: 1px solid var(--red);
+            z-index: 0;
+        }
+
+        .artist-img-wrap img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+            display: block;
+        }
+
+        .artist-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.3rem;
+        }
+
+        .artist-origin {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Genre Tags */
+        .genre-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .genre-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--bg-mid);
+            color: rgba(240,236,228,0.6);
+            transition: all 0.2s ease;
+        }
+
+        .genre-tag:hover {
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        .genre-tag.hot {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* Stats Grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--bg-mid);
+            border: 1px solid var(--bg-mid);
+        }
+
+        .stat-item {
+            background: var(--bg-dark);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            opacity: 0.5;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        /* Bio Content */
+        .bio-headline {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.05;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .bio-headline em {
+            font-style: normal;
+            color: var(--red);
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(240,236,228,0.85);
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            border-left: 3px solid var(--red);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: rgba(224,31,31,0.04);
+        }
+
+        .quote-block p {
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .quote-block cite {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 5rem 1fr;
+            gap: 1.5rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--bg-mid);
+            align-items: start;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .t-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--red);
+            line-height: 1;
+            padding-top: 0.1rem;
+        }
+
+        .t-event {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .t-desc {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(240,236,228,0.6);
+            line-height: 1.6;
+        }
+
+        /* CTA Strip */
+        .cta-strip {
+            background: var(--red);
+            padding: 3rem 0;
+        }
+
+        .cta-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            letter-spacing: 2px;
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .btn-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: var(--white);
+            color: var(--red);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .artist-card {
+                position: static;
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                min-height: 40vh;
+                padding: 3rem 0;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 4rem 1fr;
+                gap: 1rem;
+            }
+
+            .cta-strip {
+                padding: 2rem 0;
+                text-align: center;
+            }
+
+            .cta-text {
+                margin-bottom: 1.5rem;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .bio-headline {
+                font-size: 1.8rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .genre-tag {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Toxic Lyrikali</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#music">Music</a></li>
-                <li><a href="#contact-us">Contact</a></li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="about-hero">
-        <div class="about-hero-bg"></div>
-        <div class="diagonal-stripe"></div>
+    <!-- Hero Banner -->
+    <section class="about-hero">
         <div class="hero-tag">TOXIC</div>
-        <div class="hero-content">
+        <div class="container position-relative">
             <p class="hero-eyebrow">// Kenyan Artist — Est. Nairobi</p>
             <h1 class="hero-title">Biography &<br><span>About</span></h1>
         </div>
-    </div>
-
-    <section class="about-section" id="about">
-
-        <aside class="artist-card">
-            <div class="artist-img-wrap">
-                <img src="MEDIA/toxic_lyrikali.jpg" alt="Toxic Lyrikali" class="artist-photo">
-            </div>
-
-            <h2 class="artist-name">Toxic Lyrikali</h2>
-            <p class="artist-origin">📍 Nairobi, Kenya</p>
-
-            <div class="genre-row">
-                <span class="genre-tag hot">Hip-Hop</span>
-                <span class="genre-tag hot">Afro-Trap</span>
-                <span class="genre-tag">R&B</span>
-                <span class="genre-tag">Spoken Word</span>
-                <span class="genre-tag">Swahili Rap</span>
-            </div>
-
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <div class="stat-num">2018</div>
-                    <div class="stat-label">Year Started</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">9+</div>
-                    <div class="stat-label">Tracks</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">KE</div>
-                    <div class="stat-label">Origin</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">∞</div>
-                    <div class="stat-label">Lyrical depth</div>
-                </div>
-            </div>
-        </aside>
-
-        <article class="bio-content">
-            <p class="section-label">The Story</p>
-            <h2 class="bio-headline">Born from the streets,<br><em>built on raw words.</em></h2>
-
-            <p class="bio-text">
-                <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his voice in the rhythm of the streets.
-            </p>
-
-            <blockquote class="quote-block">
-                <p>"Music is the only language that needs no translation — I just speak what I feel, and let the beat carry it home."</p>
-                <cite>— Toxic Lyrikali</cite>
-            </blockquote>
-
-            <div class="timeline">
-                <h3 class="timeline-title">Journey</h3>
-                <div class="timeline-item">
-                    <span class="t-year">2018</span>
-                    <div class="t-content">
-                        <p class="t-event">First Steps</p>
-                        <p class="t-desc">Began writing and recording in Nairobi, developing a unique blend of Afro-Trap.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <span class="t-year">2025</span>
-                    <div class="t-content">
-                        <p class="t-event">Official Website</p>
-                        <p class="t-desc">Launched official platform to connect with fans and share news.</p>
-                    </div>
-                </div>
-            </div>
-        </article>
     </section>
 
-    <section id="contact-us" class="contact-section">
-        <div class="contact-container">
-            <h2>Contact Us</h2>
-            <p>Please fill out the form below and we will get back to you as soon as possible.</p>
-            
-            <form action="#" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input id="name" name="name" type="text" required>
+    <!-- Main Content -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Left: Artist Card -->
+                <div class="col-lg-5">
+                    <div class="artist-card">
+                        <div class="artist-img-wrap">
+                            <img src="MEDIA\photos\Screenshot 2026-03-26 131655.png" alt="Toxic Lyrikali">
+                        </div>
+                        
+                        <h2 class="artist-name">Toxic Lyrikali</h2>
+                        <p class="artist-origin"><i class="bi bi-geo-alt"></i> Nairobi, Kenya</p>
+                        
+                        <div class="genre-row">
+                            <span class="genre-tag hot">Hip-Hop</span>
+                            <span class="genre-tag hot">Afro-Trap</span>
+                            <span class="genre-tag">R&B</span>
+                            <span class="genre-tag">Spoken Word</span>
+                            <span class="genre-tag">Swahili Rap</span>
+                        </div>
+                        
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-num">2018</div>
+                                <div class="stat-label">Year Started</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">9+</div>
+                                <div class="stat-label">Tracks</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">KE</div>
+                                <div class="stat-label">Origin</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">∞</div>
+                                <div class="stat-label">Lyrical Depth</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input id="email" name="email" type="email" required>
+
+                <!-- Right: Bio Content -->
+                <div class="col-lg-7">
+                    <p class="section-label">The Story</p>
+                    
+                    <h2 class="bio-headline">
+                        Born from the streets,<br>
+                        <em>built on raw words.</em>
+                    </h2>
+                    
+                    <p class="bio-text">
+                        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond the city limits.
+                    </p>
+                    
+                    <p class="bio-text">
+                        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, carrying the weight of lived experience while remaining refreshingly open about the hustle, the culture, and the vision.
+                    </p>
+                    
+                    <div class="quote-block">
+                        <p>"Music is the only language that needs no translation — I just speak what I feel, and let the beat carry it home."</p>
+                        <cite>— Toxic Lyrikali</cite>
+                    </div>
+                    
+                    <p class="bio-text">
+                        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a global stage. Every track is a chapter, every album a testament to growth, resilience, and the relentless pursuit of authenticity.
+                    </p>
+
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <h3 class="timeline-title">Journey</h3>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2018</span>
+                            <div>
+                                <p class="t-event">First Steps</p>
+                                <p class="t-desc">Began writing and recording in Nairobi, developing a unique blend of Afro-Trap and conscious Hip-Hop.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2020</span>
+                            <div>
+                                <p class="t-event">First Release</p>
+                                <p class="t-desc">Dropped debut tracks that quickly gained traction in the local underground music scene.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2022</span>
+                            <div>
+                                <p class="t-event">Growing the Sound</p>
+                                <p class="t-desc">Expanded musical range, collaborating with producers and artists across East Africa.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2025</span>
+                            <div>
+                                <p class="t-event">Official Platform</p>
+                                <p class="t-desc">Launched official website to connect with fans and share backstory, lyrics, and music news.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="t-year">2026</span>
+                            <div>
+                                <p class="t-event">Global Reach</p>
+                                <p class="t-desc">Expanding international presence with new releases and cross-border collaborations.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <p>© 2026 Toxic Lyrikali</p>
-            <p>Email: example@email.com</p>
+    <!-- CTA Strip -->
+    <section class="cta-strip">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-start">
+                    <p class="cta-text">Ready to hear the music?</p>
+                </div>
+                <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
+                    <a href="discography.html" class="btn-cta">Explore the Music</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
