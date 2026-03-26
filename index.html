@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0a0a0a;
@@ -28,7 +31,12 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Bebas Neue', sans-serif;
             letter-spacing: 2px;
         }
@@ -39,7 +47,7 @@
 
         /* Navbar Styling */
         .navbar {
-            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.98), rgba(10, 10, 10, 0.9)) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--bg-mid);
         }
@@ -56,12 +64,13 @@
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(240,236,228,0.8) !important;
+            color: rgba(240, 236, 228, 0.8) !important;
             transition: color 0.3s ease;
             padding: 0.5rem 1rem !important;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--gold) !important;
         }
 
@@ -100,7 +109,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.7) 70%, var(--bg-dark) 100%);
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.7) 70%, var(--bg-dark) 100%);
         }
 
         .hero-content {
@@ -123,7 +132,7 @@
             font-size: clamp(3rem, 10vw, 7rem);
             line-height: 0.95;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
         }
 
         .hero-title span {
@@ -133,7 +142,7 @@
         .hero-tagline {
             font-size: 1.2rem;
             font-weight: 300;
-            color: rgba(240,236,228,0.8);
+            color: rgba(240, 236, 228, 0.8);
             max-width: 600px;
             margin: 0 auto 2rem;
             letter-spacing: 1px;
@@ -218,7 +227,7 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.9;
-            color: rgba(240,236,228,0.85);
+            color: rgba(240, 236, 228, 0.85);
         }
 
         .about-text strong {
@@ -245,7 +254,7 @@
         }
 
         .carousel-caption {
-            background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 50%, transparent 100%);
             padding: 3rem 2rem 2rem;
             left: 0;
             right: 0;
@@ -262,7 +271,7 @@
             font-size: 1rem;
             max-width: 600px;
             margin: 0 auto;
-            color: rgba(240,236,228,0.85);
+            color: rgba(240, 236, 228, 0.85);
         }
 
         .carousel-control-prev,
@@ -366,31 +375,126 @@
         .event-venue {
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
-            color: rgba(240,236,228,0.6);
+            color: rgba(240, 236, 228, 0.6);
         }
 
         /* Films Section */
         .films-section {
             background-color: var(--bg-dark);
+            overflow: hidden;
+            /* Prevents bubbles from causing side-scroll on the body */
         }
 
+        /* Video Styling (Kept as requested) */
+        /* Keep the video container stable and sharp */
         .video-container {
             position: relative;
             background-color: var(--bg-grey);
             border: 1px solid var(--bg-mid);
+            border-radius: 8px;
+            /* Slight rounding looks better than sharp corners */
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            z-index: 2;
+            /* Keeps it above any floating bubbles if they overlap */
         }
 
         .video-container video {
             width: 100%;
             display: block;
+            aspect-ratio: 16 / 9;
+            /* Maintains cinematic proportions */
+            object-fit: cover;
         }
 
-        .video-controls {
-            display: flex;
+        /* Ensure the gallery is horizontal over 3 rows */
+        .bubble-carousel-container {
+            margin-top: 50px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: none;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            max-height: calc(220px * 3 + 2.5rem);
+        }
+
+        .bubble-carousel-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .film-carousel-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(3, minmax(220px, 220px));
+            grid-auto-columns: minmax(320px, 380px);
             gap: 1rem;
-            padding: 1.5rem;
-            background-color: var(--bg-mid);
+            align-items: stretch;
+        }
+
+        .bubble-carousel-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .bubble-carousel-container::-webkit-scrollbar-thumb {
+            background: rgba(212, 160, 23, 0.5);
+            border-radius: 10px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 100%;
+            min-width: 260px;
+            min-height: 170px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.38);
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #000;
+            display: block;
+            border-radius: 12px;
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .gallery-item img:hover {
+            filter: brightness(1.08) saturate(1.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.06);
+            box-shadow: 0 14px 30px rgba(197, 150, 26, 0.55);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-overlay,
+        .gallery-caption {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.06);
+            box-shadow: 0 14px 30px rgba(197, 150, 26, 0.55);
+        }
+
+        .gallery-overlay {
+            display: none;
         }
 
         /* Social Section */
@@ -430,7 +534,8 @@
             padding: 3rem;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             background-color: var(--bg-dark);
             border: 1px solid var(--bg-mid);
             color: var(--white);
@@ -438,7 +543,8 @@
             padding: 0.8rem 1rem;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             background-color: var(--bg-dark);
             border-color: var(--gold);
             color: var(--white);
@@ -446,7 +552,7 @@
         }
 
         .form-control::placeholder {
-            color: rgba(240,236,228,0.4);
+            color: rgba(240, 236, 228, 0.4);
         }
 
         .form-label {
@@ -454,11 +560,11 @@
             font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(240,236,228,0.7);
+            color: rgba(240, 236, 228, 0.7);
         }
 
         .form-check-label {
-            color: rgba(240,236,228,0.7);
+            color: rgba(240, 236, 228, 0.7);
             font-size: 0.9rem;
         }
 
@@ -481,7 +587,7 @@
         .footer-text {
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
-            color: rgba(240,236,228,0.5);
+            color: rgba(240, 236, 228, 0.5);
             letter-spacing: 1px;
         }
 
@@ -517,7 +623,7 @@
             }
 
             .navbar-collapse {
-                background-color: rgba(10,10,10,0.98);
+                background-color: rgba(10, 10, 10, 0.98);
                 padding: 1rem;
                 border: 1px solid var(--bg-mid);
                 margin-top: 0.5rem;
@@ -533,7 +639,8 @@
                 font-size: 1rem;
             }
 
-            .btn-gold, .btn-red {
+            .btn-gold,
+            .btn-red {
                 padding: 0.7rem 1.5rem;
                 font-size: 0.7rem;
             }
@@ -551,12 +658,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -607,13 +716,21 @@
                 </div>
                 <div class="col-lg-7">
                     <p class="about-text">
-                        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond the city limits.
+                        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of
+                        Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his
+                        voice in the rhythm of the streets — turning everyday stories into anthems that resonate far
+                        beyond the city limits.
                     </p>
                     <p class="about-text">
-                        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, carrying the weight of lived experience while remaining refreshingly open about the hustle, the culture, and the vision.
+                        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts
+                        lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>,
+                        carrying the weight of lived experience while remaining refreshingly open about the hustle, the
+                        culture, and the vision.
                     </p>
                     <p class="about-text">
-                        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a global stage. Every track is a chapter, every album a testament to growth, resilience, and the relentless pursuit of authenticity.
+                        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a
+                        global stage. Every track is a chapter, every album a testament to growth, resilience, and the
+                        relentless pursuit of authenticity.
                     </p>
                     <a href="about.html" class="btn btn-gold mt-3">Read Full Bio</a>
                 </div>
@@ -629,46 +746,56 @@
         </div>
         <div id="journeyCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="MEDIA\photos\Screenshot 2026-03-26 063714.png" alt="Humble Beginnings">
                     <div class="carousel-caption">
                         <h3>Chapter 1: Humble Beginnings</h3>
-                        <p>Born in the streets of Nairobi, Toxic Lyrikali discovered his passion for words at a young age. Poetry became his escape, rap became his voice.</p>
+                        <p>Born in the streets of Nairobi, Toxic Lyrikali discovered his passion for words at a young
+                            age. Poetry became his escape, rap became his voice.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="MEDIA\photos\Screenshot 2026-03-26 123033.png" alt="The Grind">
                     <div class="carousel-caption">
                         <h3>Chapter 2: The Grind</h3>
-                        <p>Years of writing in notebooks, performing at open mics, and hustling for studio time. Every rejection fueled the fire to push harder.</p>
+                        <p>Years of writing in notebooks, performing at open mics, and hustling for studio time. Every
+                            rejection fueled the fire to push harder.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="MEDIA\photos\Screenshot 2026-03-26 072527.png" alt="First Break">
                     <div class="carousel-caption">
                         <h3>Chapter 3: First Break</h3>
-                        <p>2018 marked the turning point. First tracks dropped, local buzz built, and the underground scene started taking notice of this raw new talent.</p>
+                        <p>2018 marked the turning point. First tracks dropped, local buzz built, and the underground
+                            scene started taking notice of this raw new talent.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="MEDIA\photos\Screenshot 2026-03-26 123638.png" alt="Rising Star">
                     <div class="carousel-caption">
                         <h3>Chapter 4: Rising Star</h3>
-                        <p>Collaborations with East Africa's finest, growing fanbase, and a sound that transcended borders. The name Toxic Lyrikali began to echo beyond Kenya.</p>
+                        <p>Collaborations with East Africa's finest, growing fanbase, and a sound that transcended
+                            borders. The name Toxic Lyrikali began to echo beyond Kenya.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="MEDIA\photos\Screenshot 2026-03-26 063826.png" alt="Legacy Building">
                     <div class="carousel-caption">
                         <h3>Chapter 5: Legacy Building</h3>
-                        <p>Today, Toxic Lyrikali stands as a voice for the voiceless. Multiple albums, countless performances, and a mission to inspire the next generation.</p>
+                        <p>Today, Toxic Lyrikali stands as a voice for the voiceless. Multiple albums, countless
+                            performances, and a mission to inspire the next generation.</p>
                     </div>
                 </div>
             </div>
@@ -688,14 +815,17 @@
         <div class="container">
             <p class="section-label">Music</p>
             <h2 class="section-title">Discography</h2>
-            
+
             <!-- Featured Album -->
             <div class="featured-album">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <p class="font-mono text-gold mb-2" style="font-size: 0.7rem; letter-spacing: 2px; color: var(--gold);">FEATURED ALBUM</p>
+                        <p class="font-mono text-gold mb-2"
+                            style="font-size: 0.7rem; letter-spacing: 2px; color: var(--gold);">FEATURED ALBUM</p>
                         <h3>Venomous Verses</h3>
-                        <p class="mt-3" style="color: rgba(240,236,228,0.8);">A collection of intense lyrical masterpieces that showcase Toxic Lyrikali's evolution as an artist. Raw emotion meets polished production in this groundbreaking release.</p>
+                        <p class="mt-3" style="color: rgba(240,236,228,0.8);">A collection of intense lyrical
+                            masterpieces that showcase Toxic Lyrikali's evolution as an artist. Raw emotion meets
+                            polished production in this groundbreaking release.</p>
                         <p class="font-mono mt-3" style="font-size: 0.75rem; color: var(--gold);">Released: 2023</p>
                     </div>
                     <div class="col-md-4 text-md-end mt-4 mt-md-0">
@@ -818,94 +948,54 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="video-container">
-                        <video id="mainVideo" poster="MEDIA\photos\Screenshot 2026-03-26 072404.png" controls>
-                            <source src="MEDIA\videos\Toxic Lyrikali - THUGNIFICENT  (Official Music Video) _ Dir by Kaizer.mp4" type="video/mp4">
+                        <video id="mainVideo" poster="MEDIA/photos/Screenshot 2026-03-26 072404.png" controls>
+                            <source
+                                src="MEDIA/videos/Toxic Lyrikali - THUGNIFICENT (Official Music Video) _ Dir by Kaizer.mp4"
+                                type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     <div class="video-controls">
-                        <button id="playBtn" class="btn btn-gold">
-                            <i class="bi bi-play-fill"></i> Play
-                        </button>
-                        <button id="pauseBtn" class="btn btn-gold">
-                            <i class="bi bi-pause-fill"></i> Pause
-                        </button>
+                        <button id="playBtn" class="btn btn-gold"><i class="bi bi-play-fill"></i> Play</button>
+                        <button id="pauseBtn" class="btn btn-gold"><i class="bi bi-pause-fill"></i> Pause</button>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 063826.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 063826.png" alt="Toxic Lyrikali 5" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072213.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072213.png" alt="Toxic Lyrikali 6" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072234.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072234.png" alt="Toxic Lyrikali 7" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072404.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072404.png" alt="Toxic Lyrikali 8" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072428.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072428.png" alt="Toxic Lyrikali 9" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072527.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072527.png" alt="Toxic Lyrikali 10" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072635.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072635.png" alt="Toxic Lyrikali 11" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072658.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072658.png" alt="Toxic Lyrikali 12" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072736.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072736.png" alt="Toxic Lyrikali 13" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('MEDIA/photos/Screenshot 2026-03-26 072814.png')">
-                    <img src="MEDIA/photos/Screenshot 2026-03-26 072814.png" alt="Toxic Lyrikali 14" loading="lazy" />
-                    <div class="gallery-overlay"><span>Toxic Lyrikali</span></div>
+            </div>
+
+            <div class="bubble-carousel-container">
+                <div class="film-carousel-track">
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 063826.png" alt="Filmic Frame 5" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072213.png" alt="Filmic Frame 6" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072234.png" alt="Filmic Frame 7" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072404.png" alt="Filmic Frame 8" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072428.png" alt="Filmic Frame 9" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072527.png" alt="Filmic Frame 10" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072635.png" alt="Filmic Frame 11" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072658.png" alt="Filmic Frame 12" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072736.png" alt="Filmic Frame 13" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="MEDIA/photos/Screenshot 2026-03-26 072814.png" alt="Filmic Frame 14" loading="lazy" />
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Lightbox -->
-        <div id="gallery-lightbox" onclick="closeLightbox()">
-            <button id="gallery-lightbox-close" onclick="closeLightbox()">✕</button>
-            <img id="gallery-lightbox-img" src="" alt="Full size photo" onclick="event.stopPropagation()" />
-        </div>
-    </section>
-
-
-    <!-- Discography Section -->
-
-    <!-- Events Section -->
-
-    <!-- Social Media Links Widget -->
-
-    <!-- Contact us -->
-    <section id="contact-us">
-        <h2>Contact Us</h2>
-        <p>Please fill out the form below and we will get back to you as soon as possible.</p>
-        <form action="#" method="POST">
-            <div>
-                <label for="name">Name:</label><br>
-                <input id="name" name="name" type="text" required>
-            </div>
-            <div>
-                <label for="email">Email:</label><br>
-                <input id="email" name="email" type="email" required>
-            </div>
-            <div class="text-center mt-4">
-                <a href="films.html" class="btn btn-gold">More Videos</a>
-            </div>
-        </div>
     </section>
 
     <!-- Social Section -->
@@ -914,13 +1004,16 @@
             <p class="section-label justify-content-center">Connect</p>
             <h2 class="section-title">Follow Toxic Lyrikali</h2>
             <div class="d-flex justify-content-center gap-4 mt-4">
-                <a href="https://www.youtube.com/channel/UC7q5EQvi2fJTQvwZRi0QJnw" target="_blank" class="social-btn" aria-label="YouTube">
+                <a href="https://www.youtube.com/channel/UC7q5EQvi2fJTQvwZRi0QJnw" target="_blank" class="social-btn"
+                    aria-label="YouTube">
                     <i class="bi bi-youtube"></i>
                 </a>
-                <a href="https://www.instagram.com/_toxic_lyrikali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn" aria-label="Instagram">
+                <a href="https://www.instagram.com/_toxic_lyrikali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank" class="social-btn" aria-label="Instagram">
                     <i class="bi bi-instagram"></i>
                 </a>
-                <a href="https://www.tiktok.com/@toxic_lyrikali?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@toxic_lyrikali?is_from_webapp=1&sender_device=pc" target="_blank"
+                    class="social-btn" aria-label="TikTok">
                     <i class="bi bi-tiktok"></i>
                 </a>
             </div>
@@ -988,13 +1081,16 @@
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                        <a href="https://youtube.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="YouTube">
+                        <a href="https://youtube.com" target="_blank" class="social-btn"
+                            style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="YouTube">
                             <i class="bi bi-youtube"></i>
                         </a>
-                        <a href="https://instagram.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="Instagram">
+                        <a href="https://instagram.com" target="_blank" class="social-btn"
+                            style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://tiktok.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="TikTok">
+                        <a href="https://tiktok.com" target="_blank" class="social-btn"
+                            style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="TikTok">
                             <i class="bi bi-tiktok"></i>
                         </a>
                     </div>
@@ -1005,7 +1101,7 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Custom Scripts -->
     <script>
         // Video Player Controls
@@ -1013,24 +1109,24 @@
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
 
-        playBtn.addEventListener('click', function() {
+        playBtn.addEventListener('click', function () {
             video.play();
             playBtn.classList.add('active');
             pauseBtn.classList.remove('active');
         });
 
-        pauseBtn.addEventListener('click', function() {
+        pauseBtn.addEventListener('click', function () {
             video.pause();
             pauseBtn.classList.add('active');
             playBtn.classList.remove('active');
         });
 
         // Form Validation
-        (function() {
+        (function () {
             'use strict';
             const forms = document.querySelectorAll('.needs-validation');
-            Array.from(forms).forEach(function(form) {
-                form.addEventListener('submit', function(event) {
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
                     if (!form.checkValidity()) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -1042,7 +1138,7 @@
 
         // Smooth Scroll for Navbar Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href !== '#') {
                     e.preventDefault();
@@ -1056,6 +1152,8 @@
                 }
             });
         });
+
     </script>
 </body>
+
 </html>
