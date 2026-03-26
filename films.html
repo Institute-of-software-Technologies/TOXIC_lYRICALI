@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Banner */
+        .films-hero {
+            min-height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d0d00 0%, var(--bg-dark) 50%, #1a0000 100%);
+            padding: 4rem 0;
+        }
+
+        .films-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(212,160,23,0.03) 50px,
+                rgba(212,160,23,0.03) 51px
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
+
+        /* Video Player */
+        .video-player-container {
+            background-color: var(--bg-grey);
+            border: 2px solid var(--bg-mid);
+            overflow: hidden;
+        }
+
+        .video-wrapper {
+            position: relative;
+            background-color: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+        }
+
+        /* Custom Video Controls */
+        .custom-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(to top, var(--bg-mid), var(--bg-grey));
+            border-top: 1px solid var(--bg-mid);
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 2px solid var(--bg-mid);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .control-btn.active {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        .control-btn-lg {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background-color: var(--bg-mid);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--gold);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.7);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--bg-mid);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Video Info */
+        .video-info {
+            padding: 2rem;
+            background-color: var(--bg-grey);
+        }
+
+        .video-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            color: rgba(240,236,228,0.8);
+            line-height: 1.8;
+        }
+
+        /* Video Grid */
+        .video-grid-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-grid-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .video-grid-card .thumbnail {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .video-grid-card .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-grid-card:hover .thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .video-grid-card .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(10,10,10,0.8);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .video-grid-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .video-grid-card .duration {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            background: rgba(10,10,10,0.9);
+            padding: 0.2rem 0.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--white);
+        }
+
+        .video-grid-card .card-body {
+            padding: 1rem;
+        }
+
+        .video-grid-card h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-grid-card .views {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: rgba(240,236,228,0.5);
+        }
+
+        /* Behind the Scenes */
+        .bts-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            overflow: hidden;
+        }
+
+        .bts-card img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+        }
+
+        .bts-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .bts-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bts-card p {
+            color: rgba(240,236,228,0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .films-hero {
+                min-height: 35vh;
+                padding: 3rem 0;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .custom-controls {
+                padding: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .control-btn-lg {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .volume-container {
+                display: none;
+            }
+
+            .time-display {
+                min-width: auto;
+                font-size: 0.65rem;
+            }
+
+            .video-info {
+                padding: 1.5rem;
+            }
+
+            .video-info h3 {
+                font-size: 1.4rem;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .control-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .video-grid-card h5 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="films-hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">// Visual Experience</p>
+            <h1 class="hero-title">Films & <span>Videos</span></h1>
+        </div>
+    </section>
+
+    <!-- Main Video Player -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">Now Playing</p>
+            <div class="video-player-container">
+                <div class="video-wrapper">
+                    <video id="mainVideo" poster="MEDIA\photos\Screenshot 2026-03-26 072404.png" controls>
+                        <source src="MEDIA\videos\Toxic Lyrikali - SICK (Official Music Video).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="custom-controls">
+                    <button id="playPauseBtn" class="control-btn control-btn-lg">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+                    <button id="stopBtn" class="control-btn">
+                        <i class="bi bi-stop-fill"></i>
+                    </button>
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+                    <div class="volume-container">
+                        <i class="bi bi-volume-up" style="color: rgba(240,236,228,0.7);"></i>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="100">
+                    </div>
+                    <button id="fullscreenBtn" class="control-btn">
+                        <i class="bi bi-fullscreen"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3>Toxic Flow - Official Music Video</h3>
+                <p class="video-meta"><i class="bi bi-calendar"></i> Released: December 2023 | <i class="bi bi-eye"></i> 125K Views</p>
+                <p class="video-description">The official music video for "Toxic Flow" takes viewers on a journey through the streets of Nairobi. Directed by award-winning filmmaker John Kamau, this visual masterpiece captures the raw energy and authentic spirit of Toxic Lyrikali's breakout hit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Videos Grid -->
+    <section class="section-padding" style="background-color: var(--bg-grey);">
+        <div class="container">
+            <p class="section-label">More Videos</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Watch More</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - JAA JAA (Official Video).mp4" alt="Midnight Echoes">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">4:23</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>Midnight Echoes</h5>
+                            <p class="views">89K views • 1 year ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - SICK (Official Music Video).mp4" alt="Rebel Heart">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">3:45</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>Rebel Heart</h5>
+                            <p class="views">67K views • 2 years ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - THUGNIFICENT  (Official Music Video) _ Dir by Kaizer.mp4" alt="Neon Nights">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">5:12</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>Neon Nights</h5>
+                            <p class="views">45K views • 2 years ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - JAA JAA (Official Video).mp4" alt="Silent Screams">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">4:08</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>Silent Screams</h5>
+                            <p class="views">38K views • 3 years ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - SICK (Official Music Video).mp4" alt="Street Poetry">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">6:30</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>Street Poetry (Live)</h5>
+                            <p class="views">52K views • 1 year ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="video-grid-card">
+                        <div class="thumbnail">
+                            <img src="MEDIA\videos\Toxic Lyrikali - THUGNIFICENT  (Official Music Video) _ Dir by Kaizer.mp4" alt="Documentary">
+                            <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                            <span class="duration">15:45</span>
+                        </div>
+                        <div class="card-body">
+                            <h5>The Journey (Documentary)</h5>
+                            <p class="views">201K views • 6 months ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind the Scenes -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">Exclusive</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Behind the Scenes</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="bts-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 072527.png" alt="Studio Sessions">
+                        <div class="card-body">
+                            <h4>In the Studio</h4>
+                            <p>Get an exclusive look at the creative process behind Venomous Verses. Watch Toxic Lyrikali craft lyrics and work with producers to create his signature sound.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bts-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 123033.png" alt="On Tour">
+                        <div class="card-body">
+                            <h4>Life on Tour</h4>
+                            <p>Follow the journey across Kenya and beyond. From soundchecks to backstage moments, experience what it's like to be on the road with Toxic Lyrikali.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://www.youtube.com/channel/UC7q5EQvi2fJTQvwZRi0QJnw" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_toxic_lyrikali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@toxic_lyrikali?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Video Player Script -->
+    <script>
+        // Get video and control elements
+        const video = document.getElementById('mainVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        // Format time in MM:SS
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+                playPauseBtn.classList.add('active');
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                playPauseBtn.classList.remove('active');
+            }
+        });
+
+        // Stop functionality
+        stopBtn.addEventListener('click', function() {
+            video.pause();
+            video.currentTime = 0;
+            playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            playPauseBtn.classList.remove('active');
+            progressBar.style.width = '0%';
+        });
+
+        // Update progress bar and time
+        video.addEventListener('timeupdate', function() {
+            const progress = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = progress + '%';
+            
+            const current = formatTime(video.currentTime);
+            const duration = formatTime(video.duration || 0);
+            timeDisplay.textContent = `${current} / ${duration}`;
+        });
+
+        // Click on progress bar to seek
+        progressContainer.addEventListener('click', function(e) {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        });
+
+        // Volume control
+        volumeSlider.addEventListener('input', function() {
+            video.volume = this.value / 100;
+        });
+
+        // Fullscreen functionality
+        fullscreenBtn.addEventListener('click', function() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        });
+
+        // Reset play button when video ends
+        video.addEventListener('ended', function() {
+            playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            playPauseBtn.classList.remove('active');
+        });
+
+        // Click on video to toggle play/pause
+        video.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+                playPauseBtn.classList.add('active');
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                playPauseBtn.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

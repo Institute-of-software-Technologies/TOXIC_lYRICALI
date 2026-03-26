@@ -1,632 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Toxic Lyrikali</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --black: #0a0a0a;
-      --red: #e01f1f;
-      --gold: #c9a84c;
-      --white: #f0ece4;
-      --grey: #1c1c1c;
-      --mid: #2e2e2e;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
 
-    body {
-      background-color: var(--black);
-      color: var(--white);
-      font-family: 'Barlow Condensed', sans-serif;
-      overflow-x: hidden;
-    }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' 
-numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 3rem;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-    }
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
 
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      color: var(--red);
-      letter-spacing: 3px;
-      text-decoration: none;
-    }
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
 
-    nav ul a {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, color 0.2s;
-    }
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
 
-    nav ul a:hover { opacity: 1; color: var(--gold); }
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
 
-    /* ── HERO BANNER ── */
-    .about-hero {
-      position: relative;
-      height: 60vh;
-      min-height: 400px;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 3rem 3rem;
-      overflow: hidden;
-    }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
 
-    .about-hero-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 50%, #0d0d00 100%);
-    }
+        /* Hero Banner */
+        .about-hero {
+            min-height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0000 0%, var(--bg-dark) 50%, #0d0d00 100%);
+        }
 
-    .about-hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, var(--black) 0%, transparent 60%);
-    }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                -55deg,
+                transparent,
+                transparent 12px,
+                rgba(224,31,31,0.04) 12px,
+                rgba(224,31,31,0.04) 13px
+            );
+        }
 
-    .diagonal-stripe {
-      position: absolute;
-      top: 0; right: 0;
-      width: 45%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        -55deg,
-        transparent,
-        transparent 12px,
-        rgba(224,31,31,0.04) 12px,
-        rgba(224,31,31,0.04) 13px
-      );
-    }
+        .hero-tag {
+            position: absolute;
+            top: 30%;
+            right: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            color: rgba(224,31,31,0.06);
+            letter-spacing: 8px;
+            line-height: 1;
+            user-select: none;
+        }
 
-    .hero-tag {
-      position: absolute;
-      top: 40%;
-      right: 3rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 12vw, 10rem);
-      color: rgba(224,31,31,0.06);
-      letter-spacing: 8px;
-      line-height: 1;
-      user-select: none;
-    }
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
 
-    .hero-content { position: relative; z-index: 2; }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+        }
 
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 4px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
+        .hero-title span {
+            color: var(--red);
+        }
 
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 0.95;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
-    }
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
 
-    .hero-title span { color: var(--red); }
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    /* ── MAIN ABOUT SECTION ── */
-    .about-section {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 5rem;
-      align-items: start;
-    }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
 
-    /* ── LEFT: ARTIST CARD ── */
-    .artist-card {
-      position: sticky;
-      top: 6rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
-    }
+        /* Artist Card */
+        .artist-card {
+            position: sticky;
+            top: 100px;
+        }
 
-    .artist-img-wrap {
-      position: relative;
-      margin-bottom: 2rem;
-    }
+        .artist-img-wrap {
+            position: relative;
+            margin-bottom: 2rem;
+        }
 
-    .artist-img-wrap::before {
-      content: '';
-      position: absolute;
-      top: 12px; left: 12px;
-      right: -12px; bottom: -12px;
-      border: 1px solid var(--red);
-      z-index: 0;
-    }
+        .artist-img-wrap::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
+            border: 1px solid var(--red);
+            z-index: 0;
+        }
 
-    .artist-img-wrap img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: top;
-      filter: grayscale(20%) contrast(1.1);
-      display: block;
-    }
+        .artist-img-wrap img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+            display: block;
+        }
 
-    .img-placeholder {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--grey);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+        .artist-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.3rem;
+        }
 
-    .img-placeholder svg { opacity: 0.2; }
+        .artist-origin {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
 
-    .img-placeholder span {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      opacity: 0.3;
-    }
+        /* Genre Tags */
+        .genre-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
 
-    .artist-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 3px;
-      margin-bottom: 0.3rem;
-    }
+        .genre-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--bg-mid);
+            color: rgba(240,236,228,0.6);
+            transition: all 0.2s ease;
+        }
 
-    .artist-origin {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
+        .genre-tag:hover {
+            border-color: var(--red);
+            color: var(--white);
+        }
 
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--mid);
-      border: 1px solid var(--mid);
-      margin-top: 1.5rem;
-    }
+        .genre-tag.hot {
+            border-color: var(--red);
+            color: var(--red);
+        }
 
-    .stat-item {
-      background: var(--black);
-      padding: 1rem;
-      text-align: center;
-    }
+        /* Stats Grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--bg-mid);
+            border: 1px solid var(--bg-mid);
+        }
 
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      color: var(--red);
-      line-height: 1;
-    }
+        .stat-item {
+            background: var(--bg-dark);
+            padding: 1rem;
+            text-align: center;
+        }
 
-    .stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 2px;
-      color: var(--white);
-      opacity: 0.5;
-      text-transform: uppercase;
-      margin-top: 0.2rem;
-    }
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--red);
+            line-height: 1;
+        }
 
-    /* ── RIGHT: BIO CONTENT ── */
-    .bio-content {
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
-    }
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            opacity: 0.5;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
 
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 4px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+        /* Bio Content */
+        .bio-headline {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.05;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
 
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--mid);
-    }
+        .bio-headline em {
+            font-style: normal;
+            color: var(--red);
+        }
 
-    .bio-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.05;
-      letter-spacing: 1px;
-      margin-bottom: 2rem;
-    }
+        .bio-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(240,236,228,0.85);
+            margin-bottom: 1.5rem;
+        }
 
-    .bio-headline em {
-      font-style: normal;
-      color: var(--red);
-    }
+        .bio-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
 
-    .bio-text {
-      font-size: 1.1rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: rgba(240,236,228,0.8);
-      margin-bottom: 1.5rem;
-    }
+        /* Quote Block */
+        .quote-block {
+            border-left: 3px solid var(--red);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: rgba(224,31,31,0.04);
+        }
 
-    .bio-text strong {
-      color: var(--white);
-      font-weight: 600;
-    }
+        .quote-block p {
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
 
-    .quote-block {
-      border-left: 3px solid var(--red);
-      padding: 1.2rem 1.8rem;
-      margin: 2.5rem 0;
-      background: rgba(224,31,31,0.04);
-    }
+        .quote-block cite {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-style: normal;
+        }
 
-    .quote-block p {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem;
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--white);
-    }
+        /* Timeline */
+        .timeline {
+            margin-top: 3rem;
+        }
 
-    .quote-block cite {
-      display: block;
-      margin-top: 0.8rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      color: var(--gold);
-      font-style: normal;
-    }
+        .timeline-title {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
 
-    /* ── GENRE TAGS ── */
-    .genre-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin: 2rem 0;
-    }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 5rem 1fr;
+            gap: 1.5rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--bg-mid);
+            align-items: start;
+        }
 
-    .genre-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 0.4rem 0.9rem;
-      border: 1px solid var(--mid);
-      color: rgba(240,236,228,0.6);
-      transition: border-color 0.2s, color 0.2s;
-    }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
 
-    .genre-tag:hover {
-      border-color: var(--red);
-      color: var(--white);
-    }
+        .t-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--red);
+            line-height: 1;
+            padding-top: 0.1rem;
+        }
 
-    .genre-tag.hot {
-      border-color: var(--red);
-      color: var(--red);
-    }
+        .t-event {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
 
-    /* ── TIMELINE ── */
-    .timeline {
-      margin-top: 3rem;
-    }
+        .t-desc {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(240,236,228,0.6);
+            line-height: 1.6;
+        }
 
-    .timeline-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 3px;
-      margin-bottom: 1.5rem;
-      color: var(--white);
-    }
+        /* CTA Strip */
+        .cta-strip {
+            background: var(--red);
+            padding: 3rem 0;
+        }
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 5rem 1fr;
-      gap: 1.5rem;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--mid);
-      align-items: start;
-    }
+        .cta-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            letter-spacing: 2px;
+            color: var(--white);
+            margin-bottom: 0;
+        }
 
-    .timeline-item:last-child { border-bottom: none; }
+        .btn-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-    .t-year {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      color: var(--red);
-      line-height: 1;
-      padding-top: 0.1rem;
-    }
+        .btn-cta:hover {
+            background: var(--white);
+            color: var(--red);
+        }
 
-    .t-event {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 0.3rem;
-    }
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
 
-    .t-desc {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: rgba(240,236,228,0.6);
-      line-height: 1.6;
-    }
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
 
-    /* ── CTA ── */
-    .cta-strip {
-      position: relative;
-      z-index: 1;
-      background: var(--red);
-      padding: 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
 
-    .cta-text {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      letter-spacing: 2px;
-      color: var(--white);
-    }
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
 
-    .cta-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 0.9rem 2rem;
-      background: transparent;
-      border: 2px solid var(--white);
-      color: var(--white);
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, color 0.2s;
-    }
+        /* Responsive */
+        @media (max-width: 991px) {
+            .artist-card {
+                position: static;
+                margin-bottom: 3rem;
+            }
+        }
 
-    .cta-btn:hover {
-      background: var(--white);
-      color: var(--red);
-    }
+        @media (max-width: 768px) {
+            .about-hero {
+                min-height: 40vh;
+                padding: 3rem 0;
+            }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+            .section-padding {
+                padding: 3rem 0;
+            }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      nav ul { gap: 1.5rem; }
+            .timeline-item {
+                grid-template-columns: 4rem 1fr;
+                gap: 1rem;
+            }
 
-      .about-hero { padding: 0 1.5rem 2rem; height: 45vh; }
+            .cta-strip {
+                padding: 2rem 0;
+                text-align: center;
+            }
 
-      .about-section {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 3rem 1.5rem;
-      }
+            .cta-text {
+                margin-bottom: 1.5rem;
+            }
 
-      .artist-card { position: static; }
-      .cta-strip { padding: 2rem 1.5rem; }
-    }
-  </style>
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .bio-headline {
+                font-size: 1.8rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .genre-tag {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">Toxic Lyrikali</a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="#music">Music</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <div class="about-hero">
-    <div class="about-hero-bg"></div>
-    <div class="diagonal-stripe"></div>
-    <div class="hero-tag">TOXIC</div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">// Kenyan Artist — Est. Nairobi</p>
-      <h1 class="hero-title">Biography &<br><span>About</span></h1>
-    </div>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <section class="about-section">
-
-    <!-- LEFT: ARTIST CARD -->
-    <div class="artist-card">
-      <div class="artist-img-wrap">
-        <!-- Replace src with actual artist photo e.g. MEDIA/toxic_lyrikali.jpg -->
-        <img src="MEDIA/toxic_lyrikali.jpg" alt="Toxic Lyrikali"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="img-placeholder" style="display:none;">
-          <svg width="48" height="48" fill="none" stroke="#f0ece4" stroke-width="1.5" viewBox="0 0 24 24">
-            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-          </svg>
-          <span>Artist Photo</span>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <h2 class="artist-name">Toxic Lyrikali</h2>
-      <p class="artist-origin">📍 Nairobi, Kenya</p>
-
-      <div class="genre-row">
-        <span class="genre-tag hot">Hip-Hop</span>
-        <span class="genre-tag hot">Afro-Trap</span>
-        <span class="genre-tag">R&B</span>
-        <span class="genre-tag">Spoken Word</span>
-        <span class="genre-tag">Swahili Rap</span>
-      </div>
-
-      <div class="stat-grid">
-        <div class="stat-item">
-          <div class="stat-num">2018</div>
-          <div class="stat-label">Year Started</div>
+    <!-- Hero Banner -->
+    <section class="about-hero">
+        <div class="hero-tag">TOXIC</div>
+        <div class="container position-relative">
+            <p class="hero-eyebrow">// Kenyan Artist — Est. Nairobi</p>
+            <h1 class="hero-title">Biography &<br><span>About</span></h1>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">9+</div>
-          <div class="stat-label">Tracks</div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Left: Artist Card -->
+                <div class="col-lg-5">
+                    <div class="artist-card">
+                        <div class="artist-img-wrap">
+                            <img src="MEDIA\photos\Screenshot 2026-03-26 131655.png" alt="Toxic Lyrikali">
+                        </div>
+                        
+                        <h2 class="artist-name">Toxic Lyrikali</h2>
+                        <p class="artist-origin"><i class="bi bi-geo-alt"></i> Nairobi, Kenya</p>
+                        
+                        <div class="genre-row">
+                            <span class="genre-tag hot">Hip-Hop</span>
+                            <span class="genre-tag hot">Afro-Trap</span>
+                            <span class="genre-tag">R&B</span>
+                            <span class="genre-tag">Spoken Word</span>
+                            <span class="genre-tag">Swahili Rap</span>
+                        </div>
+                        
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-num">2018</div>
+                                <div class="stat-label">Year Started</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">9+</div>
+                                <div class="stat-label">Tracks</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">KE</div>
+                                <div class="stat-label">Origin</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-num">∞</div>
+                                <div class="stat-label">Lyrical Depth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Bio Content -->
+                <div class="col-lg-7">
+                    <p class="section-label">The Story</p>
+                    
+                    <h2 class="bio-headline">
+                        Born from the streets,<br>
+                        <em>built on raw words.</em>
+                    </h2>
+                    
+                    <p class="bio-text">
+                        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond the city limits.
+                    </p>
+                    
+                    <p class="bio-text">
+                        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, carrying the weight of lived experience while remaining refreshingly open about the hustle, the culture, and the vision.
+                    </p>
+                    
+                    <div class="quote-block">
+                        <p>"Music is the only language that needs no translation — I just speak what I feel, and let the beat carry it home."</p>
+                        <cite>— Toxic Lyrikali</cite>
+                    </div>
+                    
+                    <p class="bio-text">
+                        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a global stage. Every track is a chapter, every album a testament to growth, resilience, and the relentless pursuit of authenticity.
+                    </p>
+
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <h3 class="timeline-title">Journey</h3>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2018</span>
+                            <div>
+                                <p class="t-event">First Steps</p>
+                                <p class="t-desc">Began writing and recording in Nairobi, developing a unique blend of Afro-Trap and conscious Hip-Hop.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2020</span>
+                            <div>
+                                <p class="t-event">First Release</p>
+                                <p class="t-desc">Dropped debut tracks that quickly gained traction in the local underground music scene.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2022</span>
+                            <div>
+                                <p class="t-event">Growing the Sound</p>
+                                <p class="t-desc">Expanded musical range, collaborating with producers and artists across East Africa.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="t-year">2025</span>
+                            <div>
+                                <p class="t-event">Official Platform</p>
+                                <p class="t-desc">Launched official website to connect with fans and share backstory, lyrics, and music news.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="t-year">2026</span>
+                            <div>
+                                <p class="t-event">Global Reach</p>
+                                <p class="t-desc">Expanding international presence with new releases and cross-border collaborations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">KE</div>
-          <div class="stat-label">Origin</div>
+    </section>
+
+    <!-- CTA Strip -->
+    <section class="cta-strip">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-start">
+                    <p class="cta-text">Ready to hear the music?</p>
+                </div>
+                <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
+                    <a href="discography.html" class="btn-cta">Explore the Music</a>
+                </div>
+            </div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Lyrical depth</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </footer>
 
-    <!-- RIGHT: BIO -->
-    <div class="bio-content">
-      <p class="section-label">The Story</p>
-
-      <h2 class="bio-headline">
-        Born from the streets,<br>
-        <em>built on raw words.</em>
-      </h2>
-
-      <p class="bio-text">
-        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his 
-voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond the city limits.
-      </p>
-
-      <p class="bio-text">
-        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, 
-carrying the weight of lived experience while remaining refreshingly open about the hustle, the culture, and the vision.
-      </p>
-
-      <div class="quote-block">
-        <p>"Music is the only language that needs no translation — I just speak what I feel, and let the beat carry it home."</p>
-        <cite>— Toxic Lyrikali</cite>
-      </div>
-
-      <p class="bio-text">
-        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a global stage. Every track is a chapter, every album a testament to growth, resilience, and the 
-relentless pursuit of authenticity.
-      </p>
-
-      <!-- TIMELINE -->
-      <div class="timeline">
-        <h3 class="timeline-title">Journey</h3>
-
-        <div class="timeline-item">
-          <span class="t-year">2018</span>
-          <div>
-            <p class="t-event">First Steps</p>
-            <p class="t-desc">Began writing and recording in Nairobi, developing a unique blend of Afro-Trap and conscious Hip-Hop.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <span class="t-year">2020</span>
-          <div>
-            <p class="t-event">First Release</p>
-            <p class="t-desc">Dropped debut tracks that quickly gained traction in the local underground music scene.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <span class="t-year">2022</span>
-          <div>
-            <p class="t-event">Growing the Sound</p>
-            <p class="t-desc">Expanded musical range, collaborating with producers and artists across East Africa.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <span class="t-year">2025</span>
-          <div>
-            <p class="t-event">TOXIC_lYRICALI Website</p>
-            <p class="t-desc">Launched official platform to connect with fans and share backstory, lyrics, and music news.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- CTA -->
-  <div class="cta-strip">
-    <p class="cta-text">Ready to hear the music?</p>
-    <a href="index.html#services" class="cta-btn">Explore the Music</a>
-  </div>
-
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

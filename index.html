@@ -1,159 +1,992 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mboka Doba</title>
+    <title>Toxic Lyrikali | Official Website</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
 
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.7) 70%, var(--bg-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+        }
+
+        .hero-title span {
+            color: var(--red);
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(240,236,228,0.8);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-red {
+            background-color: var(--red);
+            border: 2px solid var(--red);
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-red:hover {
+            background-color: transparent;
+            color: var(--red);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--bg-dark);
+        }
+
+        .about-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 1px solid var(--bg-mid);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: rgba(240,236,228,0.85);
+        }
+
+        .about-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            background-color: var(--bg-grey);
+            padding: 5rem 0;
+        }
+
+        .carousel-item {
+            height: 70vh;
+            min-height: 500px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .carousel-caption {
+            background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, transparent 100%);
+            padding: 3rem 2rem 2rem;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .carousel-caption h3 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .carousel-caption p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(240,236,228,0.85);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 60px;
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Discography Section */
+        .discography-section {
+            background-color: var(--bg-dark);
+        }
+
+        .song-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .song-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .song-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .song-card .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .song-card .card-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .featured-album {
+            background: linear-gradient(135deg, var(--bg-grey) 0%, var(--bg-mid) 100%);
+            border: 2px solid var(--gold);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-album h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        /* Events Section */
+        .events-section {
+            background-color: var(--bg-grey);
+        }
+
+        .event-card {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--bg-mid);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            border-color: var(--gold);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .event-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .event-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .event-venue {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.6);
+        }
+
+        /* Films Section */
+        .films-section {
+            background-color: var(--bg-dark);
+        }
+
+        .video-container {
+            position: relative;
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--bg-mid);
+            justify-content: center;
+        }
+
+        /* Social Section */
+        .social-section {
+            background-color: var(--bg-grey);
+            padding: 4rem 0;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--bg-dark);
+        }
+
+        .contact-form {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            padding: 3rem;
+        }
+
+        .form-control, .form-select {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--bg-mid);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            padding: 0.8rem 1rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--bg-dark);
+            border-color: var(--gold);
+            color: var(--white);
+            box-shadow: 0 0 0 0.2rem rgba(212, 160, 23, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: rgba(240,236,228,0.4);
+        }
+
+        .form-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.7);
+        }
+
+        .form-check-label {
+            color: rgba(240,236,228,0.7);
+            font-size: 0.9rem;
+        }
+
+        .form-check-label a {
+            color: var(--gold);
+        }
+
+        .invalid-feedback {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 90vh;
+            }
+
+            .carousel-item {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .carousel-caption {
+                padding: 2rem 1rem 1.5rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .featured-album {
+                padding: 1.5rem;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .btn-gold, .btn-red {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.7rem;
+            }
+
+            .carousel-item {
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .social-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-      <nav>
-        <div>
-            <a href="#">Toxic Lyrikali</a>
-
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <!-- This is the home page hero banner -->
-    <section
-        class="relative flex flex-col items-center justify-center min-h-[60vh] px-6 py-20 text-center overflow-hidden bg-gray-900">
 
-        <div class="absolute inset-0 z-0">
-            <img src="MEDIA/toxic_lyrikali.jpg" alt="Hero Background" class="w-full h-full object-cover opacity-50" />
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <img src="MEDIA\photos\Screenshot 2026-03-26 131457.png" alt="Toxic Lyrikali" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">// Kenyan Artist — Est. Nairobi</p>
+            <h1 class="hero-title">Toxic <span>Lyrikali</span></h1>
+            <p class="hero-tagline">Raw words. Real stories. Unapologetic sound.</p>
+            <a href="about.html" class="btn btn-gold">Discover the Story</a>
         </div>
-
-        <div class="relative z-10 max-w-4xl">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-                Welcome to Toxic Lyrikali's Website
-            </h1>
-
-            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                We feed you with the artist's backstory, lyrics and music news.
-            </p>
-
-            <a href="#services"
-                class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg">
-                Explore Services
-            </a>
-        </div>
-
     </section>
 
-    <!-- Biography/About Section -->
+    <!-- About Section -->
+    <section class="about-section section-padding" id="about">
+        <div class="container">
+            <p class="section-label">Biography</p>
+            <h2 class="section-title">The Artist</h2>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 072814.png" alt="Toxic Lyrikali" class="about-img">
+                </div>
+                <div class="col-lg-7">
+                    <p class="about-text">
+                        <strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond the city limits.
+                    </p>
+                    <p class="about-text">
+                        With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, carrying the weight of lived experience while remaining refreshingly open about the hustle, the culture, and the vision.
+                    </p>
+                    <p class="about-text">
+                        Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a global stage. Every track is a chapter, every album a testament to growth, resilience, and the relentless pursuit of authenticity.
+                    </p>
+                    <a href="about.html" class="btn btn-gold mt-3">Read Full Bio</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Gallery Section -->
+    <!-- Rags-to-Riches Carousel -->
+    <section class="carousel-section" id="journey">
+        <div class="container">
+            <p class="section-label">The Journey</p>
+            <h2 class="section-title text-center mb-5">From Struggle to Success</h2>
+        </div>
+        <div id="journeyCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#journeyCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 063714.png" alt="Humble Beginnings">
+                    <div class="carousel-caption">
+                        <h3>Chapter 1: Humble Beginnings</h3>
+                        <p>Born in the streets of Nairobi, Toxic Lyrikali discovered his passion for words at a young age. Poetry became his escape, rap became his voice.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 123033.png" alt="The Grind">
+                    <div class="carousel-caption">
+                        <h3>Chapter 2: The Grind</h3>
+                        <p>Years of writing in notebooks, performing at open mics, and hustling for studio time. Every rejection fueled the fire to push harder.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 072527.png" alt="First Break">
+                    <div class="carousel-caption">
+                        <h3>Chapter 3: First Break</h3>
+                        <p>2018 marked the turning point. First tracks dropped, local buzz built, and the underground scene started taking notice of this raw new talent.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 123638.png" alt="Rising Star">
+                    <div class="carousel-caption">
+                        <h3>Chapter 4: Rising Star</h3>
+                        <p>Collaborations with East Africa's finest, growing fanbase, and a sound that transcended borders. The name Toxic Lyrikali began to echo beyond Kenya.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="MEDIA\photos\Screenshot 2026-03-26 063826.png" alt="Legacy Building">
+                    <div class="carousel-caption">
+                        <h3>Chapter 5: Legacy Building</h3>
+                        <p>Today, Toxic Lyrikali stands as a voice for the voiceless. Multiple albums, countless performances, and a mission to inspire the next generation.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#journeyCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#journeyCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
 
     <!-- Discography Section -->
+    <section class="discography-section section-padding" id="discography">
+        <div class="container">
+            <p class="section-label">Music</p>
+            <h2 class="section-title">Discography</h2>
+            
+            <!-- Featured Album -->
+            <div class="featured-album">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <p class="font-mono text-gold mb-2" style="font-size: 0.7rem; letter-spacing: 2px; color: var(--gold);">FEATURED ALBUM</p>
+                        <h3>Venomous Verses</h3>
+                        <p class="mt-3" style="color: rgba(240,236,228,0.8);">A collection of intense lyrical masterpieces that showcase Toxic Lyrikali's evolution as an artist. Raw emotion meets polished production in this groundbreaking release.</p>
+                        <p class="font-mono mt-3" style="font-size: 0.75rem; color: var(--gold);">Released: 2023</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-4 mt-md-0">
+                        <a href="discography.html" class="btn btn-red">View All Tracks</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Song Cards -->
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Toxic Flow</h5>
+                            <p class="card-text">Venomous Verses • 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Midnight Echoes</h5>
+                            <p class="card-text">Shadow Symphony • 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card song-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Rebel Heart</h5>
+                            <p class="card-text">Underground Uprising • 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="discography.html" class="btn btn-gold">Full Discography</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Events Section -->
-
-    <!-- Social Media Links Widget -->
-     
-    <!-- Contact us -->
-    <div class="isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
-        <div aria-hidden="true"
-            class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-                class="relative left-1/2 -z-10 aspect-1155/678 w-144.5 max-w-none -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-40rem)] sm:w-288.75">
+    <section class="events-section section-padding" id="events">
+        <div class="container">
+            <p class="section-label">Live</p>
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 072428.png" alt="Nairobi Concert">
+                        <div class="card-body">
+                            <p class="event-date">March 30, 2026</p>
+                            <h5 class="card-title">Nairobi Night Sessions</h5>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> The Alchemist, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 124950.png" alt="Mombasa Show">
+                        <div class="card-body">
+                            <p class="event-date">April 15, 2026</p>
+                            <h5 class="card-title">Coast Vibes Festival</h5>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Mombasa Beach Arena</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 124754.png" alt="Kisumu Performance">
+                        <div class="card-body">
+                            <p class="event-date">May 8, 2026</p>
+                            <h5 class="card-title">Lake Basin Concert</h5>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Kisumu Social Hall</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 125048.png" alt="Eldoret Show">
+                        <div class="card-body">
+                            <p class="event-date">June 20, 2026</p>
+                            <h5 class="card-title">Rift Valley Jam</h5>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Eldoret Sports Club</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 125254.png" alt="Nakuru Concert">
+                        <div class="card-body">
+                            <p class="event-date">July 12, 2026</p>
+                            <h5 class="card-title">Nakuru Urban Fest</h5>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Nakuru Athletic Club</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 125211.png" alt="Virtual Concert">
+                        <div class="card-body">
+                            <p class="event-date">August 1, 2026</p>
+                            <h5 class="card-title">Global Live Stream</h5>
+                            <p class="event-venue"><i class="bi bi-broadcast"></i> YouTube & Instagram Live</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="events.html" class="btn btn-gold">All Events</a>
             </div>
         </div>
-        <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Contact sales</h2>
-            <p class="mt-2 text-lg/8 text-gray-400">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
-        </div>
-        <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                <div>
-                    <label for="first-name" class="block text-sm/6 font-semibold text-white">First name</label>
-                    <div class="mt-2.5">
-                        <input id="first-name" type="text" name="first-name" autocomplete="given-name"
-                            class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500" />
-                    </div>
-                </div>cd
-                <div>
-                    <label for="last-name" class="block text-sm/6 font-semibold text-white">Last name</label>
-                    <div class="mt-2.5">
-                        <input id="last-name" type="text" name="last-name" autocomplete="family-name"
-                            class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500" />
-                    </div>
-                </div>
+    </section>
 
-                <div class="sm:col-span-2">
-                    <label for="email" class="block text-sm/6 font-semibold text-white">Email</label>
-                    <div class="mt-2.5">
-                        <input id="email" type="email" name="email" autocomplete="email"
-                            class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500" />
+    <!-- Films Section -->
+    <section class="films-section section-padding" id="films">
+        <div class="container">
+            <p class="section-label">Visuals</p>
+            <h2 class="section-title">Films & Videos</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="video-container">
+                        <video id="mainVideo" poster="MEDIA\photos\Screenshot 2026-03-26 072404.png" controls>
+                            <source src="MEDIA\videos\Toxic Lyrikali - THUGNIFICENT  (Official Music Video) _ Dir by Kaizer.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <button id="playBtn" class="btn btn-gold">
+                            <i class="bi bi-play-fill"></i> Play
+                        </button>
+                        <button id="pauseBtn" class="btn btn-gold">
+                            <i class="bi bi-pause-fill"></i> Pause
+                        </button>
                     </div>
                 </div>
-                <div class="sm:col-span-2">
-                    <label for="phone-number" class="block text-sm/6 font-semibold text-white">Phone number</label>
-                    <div class="mt-2.5">
-                        <div
-                            class="flex rounded-md bg-white/5 outline-1 -outline-offset-1 outline-white/10 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-500">
-                            <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-                                <select id="country" name="country" autocomplete="country" aria-label="Country"
-                                    class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-transparent py-2 pr-7 pl-3.5 text-base text-gray-400 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
-                                    <option>KE</option>
-                                    <option>ZA</option>
-                                    <option>EU</option>
-                                </select>
-                                <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true"
-                                    class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-400 sm:size-4">
-                                    <path
-                                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                                        clip-rule="evenodd" fill-rule="evenodd" />
-                                </svg>
+            </div>
+            <div class="text-center mt-4">
+                <a href="films.html" class="btn btn-gold">More Videos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section" id="social">
+        <div class="container text-center">
+            <p class="section-label justify-content-center">Connect</p>
+            <h2 class="section-title">Follow Toxic Lyrikali</h2>
+            <div class="d-flex justify-content-center gap-4 mt-4">
+                <a href="https://www.youtube.com/channel/UC7q5EQvi2fJTQvwZRi0QJnw" target="_blank" class="social-btn" aria-label="YouTube">
+                    <i class="bi bi-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/_toxic_lyrikali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@toxic_lyrikali?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn" aria-label="TikTok">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section section-padding" id="contact">
+        <div class="container">
+            <p class="section-label">Get in Touch</p>
+            <h2 class="section-title">Contact</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form class="contact-form needs-validation" novalidate>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">Please enter your first name.</div>
                             </div>
-                            <input id="phone-number" type="text" name="phone-number" placeholder="123-456-7890"
-                                class="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">Please enter your last name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+254...">
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                                    <label class="form-check-label" for="privacyCheck">
+                                        I agree to the <a href="#">privacy policy</a>
+                                    </label>
+                                    <div class="invalid-feedback">You must agree before submitting.</div>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-gold">Send Message</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="sm:col-span-2">
-                    <label for="message" class="block text-sm/6 font-semibold text-white">Message</label>
-                    <div class="mt-2.5">
-                        <textarea id="message" name="message" rows="4"
-                            class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"></textarea>
-                    </div>
-                </div>
-                <div class="flex gap-x-4 sm:col-span-2">
-                    <div class="flex h-6 items-center">
-                        <div
-                            class="group relative inline-flex w-8 shrink-0 rounded-full bg-white/5 p-px inset-ring inset-ring-white/10 outline-offset-2 outline-indigo-500 transition-colors duration-200 ease-in-out has-checked:bg-indigo-500 has-focus-visible:outline-2">
-                            <span
-                                class="size-4 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-3.5"></span>
-                            <input id="agree-to-policies" type="checkbox" name="agree-to-policies"
-                                aria-label="Agree to policies"
-                                class="absolute inset-0 size-full appearance-none focus:outline-hidden" />
-                        </div>
-                    </div>
-                    <label for="agree-to-policies" class="text-sm/6 text-gray-400">
-                        By selecting this, you agree to our
-                        <a href="#" class="font-semibold whitespace-nowrap text-indigo-400">privacy policy</a>.
-                    </label>
+                    </form>
                 </div>
             </div>
-            <div class="mt-10">
-                <button type="submit"
-                    class="block w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Let's
-                    talk</button>
-            </div>
-        </form>
-    </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-     <footer>
-        <p>© 2026 Toxic Lyrikali</p>
-        <p>Email: example@email.com</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" style="width: 45px; height: 45px; font-size: 1.2rem;" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
-</body>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Video Player Controls
+        const video = document.getElementById('mainVideo');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+
+        playBtn.addEventListener('click', function() {
+            video.play();
+            playBtn.classList.add('active');
+            pauseBtn.classList.remove('active');
+        });
+
+        pauseBtn.addEventListener('click', function() {
+            video.pause();
+            pauseBtn.classList.add('active');
+            playBtn.classList.remove('active');
+        });
+
+        // Form Validation
+        (function() {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+
+        // Smooth Scroll for Navbar Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
 </html>

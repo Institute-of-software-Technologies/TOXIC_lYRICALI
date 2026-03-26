@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --gold-light: #e8b923;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border-color: var(--bg-mid);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 236, 228, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Banner */
+        .events-hero {
+            min-height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0000 0%, var(--bg-dark) 50%, #0d0d00 100%);
+            padding: 4rem 0;
+        }
+
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 30px,
+                rgba(224,31,31,0.03) 30px,
+                rgba(224,31,31,0.03) 31px
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+        }
+
+        .hero-title span {
+            color: var(--red);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--bg-mid);
+            max-width: 100px;
+        }
+
+        /* Featured Event */
+        .featured-event {
+            background: linear-gradient(135deg, var(--bg-grey) 0%, var(--bg-mid) 100%);
+            border: 2px solid var(--red);
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .featured-event img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 300px;
+        }
+
+        .featured-event .event-content {
+            padding: 3rem;
+        }
+
+        .featured-event .event-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .featured-event h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-event .event-venue {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: rgba(240,236,228,0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-event .event-desc {
+            color: rgba(240,236,228,0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Event Cards - Masonry Style */
+        .event-card {
+            background-color: var(--bg-grey);
+            border: 1px solid var(--bg-mid);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .event-card img {
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .event-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .event-card .event-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-card .event-venue {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.6);
+        }
+
+        .event-card .event-venue i {
+            margin-right: 0.3rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-upcoming {
+            background: rgba(212,160,23,0.2);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .status-soldout {
+            background: rgba(224,31,31,0.2);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+
+        .status-live {
+            background: rgba(40,167,69,0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        /* Past Events */
+        .past-event-card {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--bg-mid);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .past-event-card:hover {
+            border-color: var(--bg-mid);
+        }
+
+        .past-event-card .date-box {
+            text-align: center;
+            padding-right: 1.5rem;
+            border-right: 1px solid var(--bg-mid);
+        }
+
+        .past-event-card .date-day {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .past-event-card .date-month {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(240,236,228,0.6);
+            text-transform: uppercase;
+        }
+
+        .past-event-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .past-event-card .venue {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(240,236,228,0.5);
+        }
+
+        /* Buttons */
+        .btn-gold {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-red {
+            background-color: var(--red);
+            border: 2px solid var(--red);
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-red:hover {
+            background-color: transparent;
+            color: var(--red);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--bg-mid);
+            color: rgba(240,236,228,0.7);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--bg-grey) 0%, var(--bg-mid) 100%);
+            padding: 4rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-grey);
+            border-top: 1px solid var(--bg-mid);
+            padding: 3rem 0;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(240,236,228,0.5);
+            letter-spacing: 1px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--bg-mid);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .events-hero {
+                min-height: 35vh;
+                padding: 3rem 0;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .featured-event .event-content {
+                padding: 2rem;
+            }
+
+            .featured-event h3 {
+                font-size: 1.8rem;
+            }
+
+            .past-event-card .date-box {
+                border-right: none;
+                border-bottom: 1px solid var(--bg-mid);
+                padding-right: 0;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(10,10,10,0.98);
+                padding: 1rem;
+                border: 1px solid var(--bg-mid);
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .featured-event .event-content {
+                padding: 1.5rem;
+            }
+
+            .event-card h4 {
+                font-size: 1.2rem;
+            }
+
+            .btn-gold, .btn-red {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="events-hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">// Live Performances</p>
+            <h1 class="hero-title">Events & <span>Concerts</span></h1>
+        </div>
+    </section>
+
+    <!-- Featured Event -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">Next Show</p>
+            <div class="featured-event">
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 130638.png" alt="Nairobi Night Sessions">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="event-content">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <p class="event-date"><i class="bi bi-calendar-event"></i> March 30, 2026</p>
+                            <h3>Nairobi Night Sessions</h3>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> The Alchemist, Nairobi, Kenya</p>
+                            <p class="event-desc">Join Toxic Lyrikali for an unforgettable night of raw lyrics and infectious beats. Experience the energy of Nairobi's underground scene as he performs tracks from Venomous Verses and classic hits. Special guests and surprise performances guaranteed.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <button class="btn btn-red">Get Tickets</button>
+                                <button class="btn btn-gold">Add to Calendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Grid -->
+    <section class="section-padding" style="background-color: var(--bg-grey);">
+        <div class="container">
+            <p class="section-label">Coming Up</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Upcoming Events</h2>
+            
+            <div class="row" data-masonry='{"percentPosition": true }'>
+                <!-- Event 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 130835.png" alt="Coast Vibes Festival" style="height: 280px;">
+                        <div class="card-body">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <p class="event-date">April 15, 2026</p>
+                            <h4>Coast Vibes Festival</h4>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Mombasa Beach Arena</p>
+                            <button class="btn btn-outline mt-2">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 130742.png" alt="Lake Basin Concert" style="height: 220px;">
+                        <div class="card-body">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <p class="event-date">May 8, 2026</p>
+                            <h4>Lake Basin Concert</h4>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Kisumu Social Hall</p>
+                            <button class="btn btn-outline mt-2">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 130924.png" alt="Rift Valley Jam" style="height: 320px;">
+                        <div class="card-body">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <p class="event-date">June 20, 2026</p>
+                            <h4>Rift Valley Jam</h4>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Eldoret Sports Club</p>
+                            <button class="btn btn-outline mt-2">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA/event5.jpg" alt="Nakuru Urban Fest" style="height: 250px;">
+                        <div class="card-body">
+                            <span class="status-badge status-soldout">Sold Out</span>
+                            <p class="event-date">July 12, 2026</p>
+                            <h4>Nakuru Urban Fest</h4>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Nakuru Athletic Club</p>
+                            <button class="btn btn-outline mt-2" disabled>Waitlist</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 125211.png" alt="Global Live Stream" style="height: 200px;">
+                        <div class="card-body">
+                            <span class="status-badge status-live">Live Stream</span>
+                            <p class="event-date">August 1, 2026</p>
+                            <h4>Global Live Stream</h4>
+                            <p class="event-venue"><i class="bi bi-broadcast"></i> YouTube & Instagram Live</p>
+                            <button class="btn btn-outline mt-2">Set Reminder</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 7 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="MEDIA\photos\Screenshot 2026-03-26 131116.png" alt="Kampala Crossover" style="height: 300px;">
+                        <div class="card-body">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <p class="event-date">September 18, 2026</p>
+                            <h4>Kampala Crossover</h4>
+                            <p class="event-venue"><i class="bi bi-geo-alt"></i> Kampala Serena Hotel</p>
+                            <button class="btn btn-outline mt-2">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events -->
+    <section class="section-padding">
+        <div class="container">
+            <p class="section-label">History</p>
+            <h2 class="mb-5" style="font-size: 2.5rem;">Past Events</h2>
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="past-event-card d-flex flex-column flex-sm-row align-items-sm-center">
+                        <div class="date-box mb-3 mb-sm-0">
+                            <div class="date-day">24</div>
+                            <div class="date-month">Dec 2025</div>
+                        </div>
+                        <div class="ms-sm-4">
+                            <h5>End of Year Bash</h5>
+                            <p class="venue"><i class="bi bi-geo-alt"></i> K1 Klub House, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="past-event-card d-flex flex-column flex-sm-row align-items-sm-center">
+                        <div class="date-box mb-3 mb-sm-0">
+                            <div class="date-day">15</div>
+                            <div class="date-month">Nov 2025</div>
+                        </div>
+                        <div class="ms-sm-4">
+                            <h5>Underground Showcase</h5>
+                            <p class="venue"><i class="bi bi-geo-alt"></i> The Mist, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="past-event-card d-flex flex-column flex-sm-row align-items-sm-center">
+                        <div class="date-box mb-3 mb-sm-0">
+                            <div class="date-day">08</div>
+                            <div class="date-month">Oct 2025</div>
+                        </div>
+                        <div class="ms-sm-4">
+                            <h5>Campus Tour: UoN</h5>
+                            <p class="venue"><i class="bi bi-geo-alt"></i> University of Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="past-event-card d-flex flex-column flex-sm-row align-items-sm-center">
+                        <div class="date-box mb-3 mb-sm-0">
+                            <div class="date-day">22</div>
+                            <div class="date-month">Aug 2025</div>
+                        </div>
+                        <div class="ms-sm-4">
+                            <h5>Summer Vibes Festival</h5>
+                            <p class="venue"><i class="bi bi-geo-alt"></i> Diani Beach, Mombasa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Never Miss a Show</h2>
+                    <p style="color: rgba(240,236,228,0.7); margin-bottom: 2rem;">Subscribe to get notified about upcoming events, exclusive presales, and behind-the-scenes content.</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" placeholder="Enter your email" style="background-color: var(--bg-dark); border: 1px solid var(--bg-mid); color: var(--white); padding: 0.8rem 1rem;">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-gold w-100">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Masonry for grid layout -->
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+</body>
+</html>
