@@ -1,34 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mboka Doba</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
+
 <body>
-    <!-- This is the home page hero banner -->
-    <section class="hero">
-        <!-- Background image -->
-        <div class="hero-bg">
-            <img src="MEDIA/toxic_lyrikali.jpg" alt="Hero Background">
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <a href="#">Toxic Lyrikali</a>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </div>
-        <h1>Welcome to Toxic Lyrikali's  Website</h1>
-        <p>We feed you with the artist's backstory, lyrics and music news.</p>
-        <a href="#services" class="btn">Explore Services</a>
+    </nav>
+    <!-- This is the home page hero banner -->
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <img src="MEDIA/toxic_lyrikali.jpg" alt="Hero Background" class="hero-bg-img" />
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Welcome to Toxic Lyrikali's Website
+            </h1>
+
+            <p class="hero-subtitle">
+                We feed you with the artist's backstory, lyrics and music news.
+            </p>
+
+            <a href="#services" class="hero-btn">
+                Explore Services
+            </a>
+        </div>
     </section>
 
-        <!-- MERGE CONFLICT DEMO SECTION — Zakariya Abdisalam 260075 -->
-        <section id="merge-conflict-demo" aria-labelledby="conflict-heading" data-author="Zakariya Abdisalam 260075">
-            <h2 id="conflict-heading">Merge Conflict Demo</h2>
-            <p>
-                This section shows the merge conflict exercise completed during the collaboration practical.
-            </p>
-            <ul>
-                <li>Conflict triggered after pulling latest <code>main</code> changes.</li>
-                <li>Conflict markers were removed manually in <code>index.html</code>.</li>
-                <li>Resolution was committed and pushed to this feature branch.</li>
-            </ul>
-            </section>
+    <!-- Biography/About Section -->
+    <section id="about">
+        <div>
+            <div>
+                <img src="MEDIA/toxic_lyrikali.jpg" alt="Toxic Lyrikali">
+                <h2>Toxic Lyrikali</h2>
+                <p>📍 Nairobi, Kenya</p>
+                <div>
+                    <span>Hip-Hop</span>
+                    <span>Afro-Trap</span>
+                    <span>R&B</span>
+                    <span>Spoken Word</span>
+                    <span>Swahili Rap</span>
+                </div>
+                <div>
+                    <div><strong>2018</strong>
+                        <p>Year Started</p>
+                    </div>
+                    <div><strong>9+</strong>
+                        <p>Tracks</p>
+                    </div>
+                    <div><strong>KE</strong>
+                        <p>Origin</p>
+                    </div>
+                    <div><strong>∞</strong>
+                        <p>Lyrical Depth</p>
+                    </div>
+                </div>
+            </div>
 
+            <div>
+                <p>The Story</p>
+                <h2>Born from the streets, built on raw words.</h2>
+                <p><strong>Toxic Lyrikali</strong> is a Nairobi-based artist whose music sits at the crossroads of
+                    Hip-Hop, Afro-Trap and raw spoken word. Growing up in the heart of Kenya's capital, he found his
+                    voice in the rhythm of the streets — turning everyday stories into anthems that resonate far beyond
+                    the city limits.</p>
+                <p>With a pen sharper than most and a delivery that cuts through noise, Toxic Lyrikali crafts lyrics
+                    that are unapologetically honest. His sound blends <strong>Swahili and English</strong>, carrying
+                    the weight of lived experience while remaining refreshingly open about the hustle, the culture, and
+                    the vision.</p>
+                <blockquote>
+                    <p>"Music is the only language that needs no translation — I just speak what I feel, and let the
+                        beat carry it home."</p>
+                    <cite>— Toxic Lyrikali</cite>
+                </blockquote>
+                <p>Beyond the music, Toxic Lyrikali is a storyteller committed to representing Kenyan culture on a
+                    global stage. Every track is a chapter, every album a testament to growth, resilience, and the
+                    relentless pursuit of authenticity.</p>
+
+                <h3>Journey</h3>
+                <div>
+                    <div><span>2018</span>
+                        <div>
+                            <p>First Steps</p>
+                            <p>Began writing and recording in Nairobi, developing a unique blend of Afro-Trap and
+                                conscious Hip-Hop.</p>
+                        </div>
+                    </div>
+                    <div><span>2020</span>
+                        <div>
+                            <p>First Release</p>
+                            <p>Dropped debut tracks that quickly gained traction in the local underground music scene.
+                            </p>
+                        </div>
+                    </div>
+                    <div><span>2022</span>
+                        <div>
+                            <p>Growing the Sound</p>
+                            <p>Expanded musical range, collaborating with producers and artists across East Africa.</p>
+                        </div>
+                    </div>
+                    <div><span>2025</span>
+                        <div>
+                            <p>TOXIC_lYRICALI Website</p>
+                            <p>Launched official platform to connect with fans and share backstory, lyrics, and music
+                                news.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p>Moments and highlights from Toxic Lyrikali.</p>
+        <div>
+            <img src="MEDIA/Screenshot 2026-03-26 063613.png" alt="Toxic Lyrikali photo 1">
+            <img src="MEDIA/Screenshot 2026-03-26 063631.png" alt="Toxic Lyrikali photo 2">
+            <img src="MEDIA/Screenshot 2026-03-26 063714.png" alt="Toxic Lyrikali photo 3">
+            <img src="MEDIA/Screenshot 2026-03-26 063733.png" alt="Toxic Lyrikali photo 4">
+            <img src="MEDIA/Screenshot 2026-03-26 063826.png" alt="Toxic Lyrikali photo 5">
+            <img src="MEDIA/Screenshot 2026-03-26 072213.png" alt="Toxic Lyrikali photo 6">
+            <img src="MEDIA/Screenshot 2026-03-26 072234.png" alt="Toxic Lyrikali photo 7">
+            <img src="MEDIA/Screenshot 2026-03-26 072404.png" alt="Toxic Lyrikali photo 8">
+            <img src="MEDIA/Screenshot 2026-03-26 072428.png" alt="Toxic Lyrikali photo 9">
+            <img src="MEDIA/Screenshot 2026-03-26 072527.png" alt="Toxic Lyrikali photo 10">
+            <img src="MEDIA/Screenshot 2026-03-26 072635.png" alt="Toxic Lyrikali photo 11">
+            <img src="MEDIA/Screenshot 2026-03-26 072658.png" alt="Toxic Lyrikali photo 12">
+            <img src="MEDIA/Screenshot 2026-03-26 072736.png" alt="Toxic Lyrikali photo 13">
+            <img src="MEDIA/Screenshot 2026-03-26 072814.png" alt="Toxic Lyrikali photo 14">
+        </div>
+    </section>
+
+
+    <!-- Discography Section -->
+
+    <!-- Events Section -->
+
+    <!-- Social Media Links Widget -->
+
+    <!-- Contact us -->
+  <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>Please fill out the form below and we will get back to you as soon as possible.</p>
+        <form action="#" method="POST">
+            <div>
+                <label for="name">Name:</label><br>
+                <input id="name" name="name" type="text" required>
+            </div>
+            <div>
+                <label for="email">Email:</label><br>
+                <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Send Message</button>
+            </div>
+        </form>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Toxic Lyrikali</p>
+        <p>Email: example@email.com</p>
+    </footer>
 </body>
+
 </html>
