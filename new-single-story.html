@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story Behind the New Single | Toxic Lyrikali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-grey: #1c1c1c;
+            --bg-mid: #2e2e2e;
+            --gold: #d4a017;
+            --white: #f0ece4;
+            --red: #e01f1f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .navbar {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.9)) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-mid);
+        }
+
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red) !important;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(240,236,228,0.8) !important;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        .hero-section {
+            min-height: 52vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, #1a0000 0%, var(--bg-dark) 40%, #0d0d00 100%);
+            overflow: hidden;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title span {
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            color: rgba(240,236,228,0.8);
+            margin-bottom: 2rem;
+            line-height: 1.75;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .story-card {
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid var(--bg-mid);
+            padding: 2.5rem;
+        }
+
+        .story-card p {
+            line-height: 1.85;
+            color: rgba(240,236,228,0.88);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-card strong {
+            color: var(--gold);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            border: 1px solid var(--gold);
+            color: var(--bg-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.85rem 1.5rem;
+            font-weight: 700;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .footer {
+            border-top: 1px solid var(--bg-mid);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-text {
+            color: rgba(240,236,228,0.65);
+            font-size: 0.85rem;
+        }
+
+        .social-btn {
+            color: rgba(240,236,228,0.9);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-btn:hover {
+            color: var(--gold);
+            transform: translateY(-4px) scale(1.08) rotate(2deg);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 25px rgba(212,160,23,0.3);
+        }
+
+        .social-btn:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Toxic Lyrikali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="discography.html">Discography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <p class="hero-eyebrow">February 2026 • Music</p>
+            <h1 class="hero-title">The Story Behind the <span>New Single</span></h1>
+            <p class="hero-subtitle">Behind the beat, behind the lyrics. This is the journey from the first spark of an idea to the final recorded track.</p>
+        </div>
+    </section>
+
+    <main class="container content-section">
+        <div class="story-card">
+            <p>It started with a voice memo recorded on a broken phone, a single line that refused to leave Toxic’s head. The first beat that arrived was sparse and raw, built from a dusty kick and a clipped snare that left room for the lyrics to breathe. The rest of the track was shaped around that first spark: a rhythm that felt like a heartbeat and a hook that moved like a warning.</p>
+            <p>In the studio, the tempo shifted several times. The producer added layers of high hats and a low bass pulse that gave the song its edge. Toxic returned again and again to the same truth—this wasn’t just another single. It was a story of the night, the city, and the people who stand up when the world tries to silence them.</p>
+            <p>The writing process became its own performance. Verses were written in the back of a van, in a dusty rehearsal room, and on the side of a stage after a set. The emotion came from remembering the faces of the crowd, the raw words that lit them up, and the pressure to deliver something honest. Every line had to earn its place by the time the final vocal was laid down.</p>
+            <p>When the single finally dropped, it sounded like the city itself—urgent, unapologetic, and alive. It reminded listeners that a great song doesn’t just move your body; it moves the conversation.</p>
+            <div class="mt-4">
+                <a href="blog.html" class="btn btn-gold">Back to Blog</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text mb-0">&copy; 2026 Toxic Lyrikali. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -343,13 +343,35 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
             text-decoration: none;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
         }
 
         .social-btn:hover {
             border-color: var(--gold);
             color: var(--gold);
+            transform: translateY(-4px) scale(1.08) rotate(2deg);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 25px rgba(212,160,23,0.3);
+        }
+
+        .social-btn:hover::before {
+            opacity: 1;
         }
 
         /* Buttons */
